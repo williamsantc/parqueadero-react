@@ -1,7 +1,5 @@
 import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import Head from 'next/head';
 import { useRouter } from 'next/router';
 
 const Layout: React.FC = ({ children }) => {
@@ -12,9 +10,6 @@ const Layout: React.FC = ({ children }) => {
 
   return (
     <div>
-      <Head>
-        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet" />
-      </Head>
       <Navbar bg="light" expand="lg" className="border-bottom shadow-sm">
         <Navbar.Brand onClick={() => navigate('/')} href="#">Parqueadero</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -28,33 +23,6 @@ const Layout: React.FC = ({ children }) => {
         </Navbar.Collapse>
       </Navbar>
       {children}
-      <style jsx={true} global={true}>{`
-        body {
-          font-family: "Raleway", sans-serif;
-        }
-
-        .app {
-          display: -webkit-box;
-          display: -ms-flexbox;
-          display: flex;
-          -webkit-box-orient: vertical;
-          -webkit-box-direction: normal;
-          -ms-flex-direction: column;
-          flex-direction: column;
-          min-height: 90vh;
-        }
-
-        .logo {
-          width: 30%;
-          height: 30%;
-        }
-
-        .custom-nav-link {
-          color: var(--primary) !important;
-          text-decoration: none;
-          background-color: transparent;
-        }
-      `}</style>
     </div>
   );
 };
