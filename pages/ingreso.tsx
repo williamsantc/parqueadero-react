@@ -10,8 +10,7 @@ type Props = ReturnType<typeof mapStateToProps> & ReturnType<typeof dispatchProp
 const Ingreso: React.FC<Props> = ({ _addVehicleAction, tickets }) => {
   const addVehicle = () => {
     _addVehicleAction({ brand: 'CHEEE' });
-    console.log(tickets);
-  }
+  };
   return (
     <Layout>
       <div className="container mt-4">
