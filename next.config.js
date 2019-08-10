@@ -13,5 +13,11 @@ module.exports = withCSS(withSass({
     });
 
     return config;
+  },
+  exportPathMap: function() {
+    return {
+      '/': { page: '/' },
+      '/ingreso': { page: '/ingreso'}
+    };
   }
 }));

@@ -1,9 +1,9 @@
 export default interface Vehicle {
-  licencePlate?: string | null;
-  vehicleType?: vehicleTyes | null;
-  brand?: string | null;
-  model?: string | null;
-  year?: number | null;
+  licencePlate?: string;
+  vehicleType?: vehicleTyes;
+  brand?: string;
+  model?: string;
+  year?: string;
 }
 
 export enum vehicleTyes {

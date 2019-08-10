@@ -1,33 +1,37 @@
-import React, { Dispatch } from 'react';
+import { useState } from 'react';
 import Layout from '../layouts/layout';
 import { Button } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import { RootState } from '../store/types';
-import { addVehicleAction } from '../store/actions/tickets.actions';
+import RegistroIngreso from '../components/registro-modal';
+import Vehicle from '../models/vehicle.model';
+import ListaIngreso from '../components/lista-ingreso';
+import { mapStateToProps, dispatchProps, StoreProps } from '../store';
 
-type Props = ReturnType<typeof mapStateToProps> & ReturnType<typeof dispatchProps>;
+const Ingreso: React.FC<StoreProps> = ({ _addVehicleAction, tickets }) => {
 
-const Ingreso: React.FC<Props> = ({ _addVehicleAction, tickets }) => {
-  const addVehicle = () => {
-    _addVehicleAction({ brand: 'CHEEE' });
+  const [modalShow, setModalShow] = useState(false);
+
+  const addVehicle = (vehicle: Vehicle) => {
+    _addVehicleAction(vehicle);
   };
+
   return (
     <Layout>
       <div className="container mt-4">
         <div className="d-flex justify-content-between align-items-center">
-          <h4>Registrar Ingreso {tickets.length}</h4>
-          <Button variant="primary" onClick={() => addVehicle()}>Añadir</Button>
+          <h4>Registrar Ingreso</h4>
+          <Button variant="primary" onClick={() => setModalShow(true)}>Añadir</Button>
         </div>
+        <p className="text-muted font-weight-bold mt-3 mb-1">Vehiculos en el parqueadero</p>
+        <ListaIngreso tickets={tickets} />
       </div>
+      <RegistroIngreso
+        show={modalShow}
+        onHide={() => setModalShow(false)}
+        saveEntry={(vehicle) => addVehicle(vehicle)}
+      />
     </Layout>
   );
 };
-const mapStateToProps = (state: RootState) => ({
-  tickets: state.TicketReducers.vehicles,
-});
-
-const dispatchProps = () => ({
-  _addVehicleAction: addVehicleAction,
-});
 
 export default connect(mapStateToProps, dispatchProps())(Ingreso);

@@ -5,7 +5,7 @@ import { Store } from "redux";
 import actions from "../actions";
 import reducers from "../reducers";
 
-export interface AddVehicletAction {
+export interface AddVehicleAction {
     type: typeof ACTIONS.ADD_VEHICLE;
     payload: Vehicle;
 }
