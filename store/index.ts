@@ -30,4 +30,6 @@ export const dispatchProps = () => ({
     _addVehicleAction: addVehicleAction,
 });
 
-export type StoreProps = ReturnType<typeof mapStateToProps> & ReturnType<typeof dispatchProps>;
+export type StateProps = ReturnType<typeof mapStateToProps>;
+
+export type StoreProps = StateProps & ReturnType<typeof dispatchProps>;

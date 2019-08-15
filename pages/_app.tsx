@@ -6,6 +6,7 @@ import Head from 'next/head';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { PersistGate } from 'redux-persist/integration/react';
 import { Persistor } from 'redux-persist';
+import { Provider } from 'react-redux';
 
 const isServer = typeof window === 'undefined';
 const __NEXT_REDUX_STORE__ = '__NEXT_REDUX_STORE__';
@@ -57,9 +58,11 @@ class MyApp extends App {
         <Head>
           <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet" />
         </Head>
-        <PersistGate loading={null} persistor={this.persistor}>
-          <Component {...pageProps} store={this.reduxStore} />
-        </PersistGate>
+        <Provider store={this.reduxStore} >
+          <PersistGate loading={null} persistor={this.persistor}>
+            <Component {...pageProps} store={this.reduxStore} />
+          </PersistGate>
+        </Provider>
 
         <style jsx={true} global={true}>{`
         body {
